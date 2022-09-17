@@ -28,6 +28,7 @@ void	*p_func(void *data)
 	int		nxt;
 	int		res;
 	int		cnt;
+	struct timeval	tval;
 
 	cnt = 0;
 	d = (t_data *)data;
@@ -49,6 +50,8 @@ void	*p_func(void *data)
 		pthread_mutex_unlock(&(d->mtx[idx]));
 		pthread_mutex_unlock(&(d->mtx[nxt]));
 	}
+	gettimeofday(&tval, NULL);
+	printf("cannot lock cur time : %d", tval.tv_usec);
 	return (NULL);
 }
 
